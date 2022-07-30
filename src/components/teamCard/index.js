@@ -14,8 +14,8 @@ import IconButton from "@material-ui/core/IconButton";
 import Grid from "@material-ui/core/Grid";
 
 const useStyles = makeStyles({
-  card: { maxWidth: 450 },
-  media: { height: 500 },
+  card: { maxWidth: 300 },
+  media: { height: 300 },
   avatar: {
     backgroundColor: "rgb(255, 0, 0)",
   },
@@ -23,16 +23,16 @@ const useStyles = makeStyles({
 
 export default function TeamCard(props) {
   const classes = useStyles();
-  const teams = props.teams;
+  const team = props.team;
   return (
     <Card className={classes.card}>
-      <CardHeader className={classes.header} title={teams.team.name} />
+      <CardHeader className={classes.header} title={team.team.name} />
       <CardMedia
         className={classes.media}
         image={
-          teams.poster_path
-            ? `${teams.team.logo}`
-            : `${process.env.PUBLIC_URL}/assets/film-poster-placeholder.png`
+          team.team.logo
+            ? `${team.team.logo}`
+            : `${process.env.PUBLIC_URL}/assets/football-placeholder.jpg`
         }
       />
       <CardContent>
@@ -40,13 +40,13 @@ export default function TeamCard(props) {
           <Grid item xs={6}>
             <Typography variant="h6" component="p">
               <CalendarIcon fontSize="small" />
-              {teams.group}
+              {team.group}
             </Typography>
           </Grid>
           <Grid item xs={6}>
             <Typography variant="h6" component="p">
               <StarRateIcon fontSize="small" />
-              {"  "} {teams.rank}{" "}
+              {"  "} {team.rank}{" "}
             </Typography>
           </Grid>
         </Grid>
@@ -62,3 +62,4 @@ export default function TeamCard(props) {
     </Card>
   );
 }
+  

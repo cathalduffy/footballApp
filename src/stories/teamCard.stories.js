@@ -3,7 +3,7 @@ import TeamCard from "../components/teamCard";
 import SampleTeam from "./sampleData";
 
 export default {
-  title: "Home Page/MovieCard",
+  title: "Home Page/TeamCard",
   component: TeamCard,
 };
 

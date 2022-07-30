@@ -1,4 +1,15 @@
 export default {
+    "league": {
+        "id": 39,
+        "name": "Premier League",
+        "country": "England",
+        "logo": "https://media.api-sports.io/football/leagues/39.png",
+        "flag": "https://media.api-sports.io/flags/gb.svg",
+        "season": 2021,
+        "standings":
+        [ 
+            [
+                {
     rank: 1,
     poster_path: "/iTQHKziZy9pAAY4hHEDCGPaOvFC.jpg",
     team: {
@@ -44,3 +55,9 @@ export default {
     },
     update: "2022-05-22T00:00:00+00:00"
 }
+            ]
+]
+}
+
+            
+        }
