@@ -62,4 +62,3 @@ export default function TeamCard(props) {
     </Card>
   );
 }
-  
