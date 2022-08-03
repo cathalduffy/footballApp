@@ -31,6 +31,10 @@ const useStyles = makeStyles((theme) => ({
   chipLabel: {
     margin: theme.spacing(0.5),
   },
+  gridList: {
+    width: 300,
+    height: "100vh",
+  },
 }));
 
 const TeamDetails = (props) => {
@@ -39,13 +43,13 @@ const TeamDetails = (props) => {
 
   return (
     <>
-      <Typography variant="h5" component="h3">
-        Overview
+      <Typography variant="h4" component="h3">
+        Team Overview
       </Typography>
-      <Grid container spacing={6} style={{ padding: "40px" }}>
+      <Grid container spacing={8} style={{ padding: "60px" }}>
         <Grid item xs={3}>
           <div className={classes.root}>
-            <ImageList rowHeight={200} className={classes.gridList} cols={1}>
+            <ImageList rowHeight={300} className={classes.gridList} cols={1}>
               <ImageListItem
                 key={teams.team.logo}
                 className={classes.gridListTile}
@@ -53,18 +57,28 @@ const TeamDetails = (props) => {
               >
                 <img src={teams.team.logo} alt={teams.team.logo} />
               </ImageListItem>
+              <ImageListItem
+                key={teams.venue.image}
+                className={classes.gridListTile}
+                cols={1}
+              >
+                <img src={teams.venue.image} alt={teams.venue.image} />
+              </ImageListItem>
             </ImageList>
           </div>
         </Grid>
         <Grid item xs={9}>
           <Typography variant="h6" component="p">
             {teams.league.season}
+            <br></br>
           </Typography>
           <Typography variant="h3" component="p">
             {teams.team.name}
+            <br></br>
+            <br></br>
           </Typography>
           <Grid key={teams.id} item xs={12}>
-          <TeamTable key={teams.id} id={teams.team.id} />
+          <TeamTable key={teams.id} name={teams.team.name} country={teams.team.country} founded={teams.team.founded} stadium={teams.venue.name} capacity={teams.venue.capacity} city={teams.venue.city}/>
         </Grid>
           <div className={classes.chipRoot}>
             <Paper component="ul" className={classes.chipSet}>

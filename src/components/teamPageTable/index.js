@@ -12,24 +12,33 @@ export default function TeamTable(props) {
   // const team = props.team;
   return (
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
+      <Table sx={{ minWidth: 650 }} size="large" aria-label="a dense table">
         <TableHead>
           <TableRow>
-            <TableCell>Team</TableCell>
-            <TableCell align="right">Rank</TableCell>
-            <TableCell align="right">League</TableCell>
+            <TableCell><b>Team</b></TableCell>
+            <TableCell><b>Details</b></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          <TableRow
-            key="Name"
-            sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-          >
-            <TableCell component="th" scope="row">
-              Name
-            </TableCell>
-            <TableCell align="right">{props.id}</TableCell>
-            <TableCell align="right">abcdefghijklmno</TableCell>
+          <TableRow>
+            <TableCell>Name</TableCell>
+            <TableCell>{props.name}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Country</TableCell>
+            <TableCell>{props.country}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Founded</TableCell>
+            <TableCell>{props.founded}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Stadium</TableCell>
+            <TableCell>{props.stadium}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Stadium Capacity</TableCell>
+            <TableCell>{props.capacity}</TableCell>
           </TableRow>
         </TableBody>
       </Table>

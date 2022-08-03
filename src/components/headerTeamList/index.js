@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Header = (props ) => {
+const Header = (props) => {
   const classes = useStyles();
   const title = props.title
   return (

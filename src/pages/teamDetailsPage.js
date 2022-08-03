@@ -3,8 +3,6 @@ import Header from "../components/headerTeamList/";
 import TeamDetails from "../components/teamDetails/";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
-import ImageList from "@material-ui/core/ImageList";
-import ImageListItem from "@material-ui/core/ImageListItem";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,11 +26,11 @@ console.log(props)
       {sample ? (
         <>
           <Header teams={sample} />
-          <Grid container spacing={5} style={{ padding: "15px" }}>
-            <Grid item xs={3}>
+          <Grid container spacing={10} style={{ padding: "20px" }}>
+            <Grid item xl={3}>
 
             </Grid>
-            <Grid item xs={9}>
+            <Grid item xs={11}>
               <TeamDetails teams={sample} />
             </Grid>
           </Grid>
