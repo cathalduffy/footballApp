@@ -12,6 +12,7 @@ import CalendarIcon from "@material-ui/icons/CalendarTodayTwoTone";
 import StarRateIcon from "@material-ui/icons/StarRate";
 import IconButton from "@material-ui/core/IconButton";
 import Grid from "@material-ui/core/Grid";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles({
   card: { maxWidth: 300 },
@@ -23,7 +24,9 @@ const useStyles = makeStyles({
 
 export default function TeamCard(props) {
   const classes = useStyles();
+  console.log(props)
   const team = props.team;
+
   return (
     <Card className={classes.card}>
       <CardHeader className={classes.header} title={team.team.name} />
@@ -55,9 +58,11 @@ export default function TeamCard(props) {
         <IconButton aria-label="add to favorites" onClick={null}>
           <FavoriteIcon color="primary" fontSize="large" />
         </IconButton>
-        <Button variant="outlined" size="medium" color="primary">
-          More Info ...
-        </Button>
+        <Link to={`/team/${team.id}`}>
+          <Button variant="outlined" size="medium" color="primary">
+            More Info ...
+          </Button>
+        </Link>
       </CardActions>
     </Card>
   );
