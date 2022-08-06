@@ -1,8 +1,9 @@
-import React from "react";
+import React, {useState, useEffect}  from "react";
 import Header from "../components/headerTeamList/";
 import TeamDetails from "../components/teamDetails/";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
+import { useParams } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,21 +18,43 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const TeamDetailsPage = (props) => {
-console.log(props)
-  const sample = props.sample;
-  console.log(props.sample)
+//  const sample = props.sample;
+const classes = useStyles();
+const { id } = useParams();
+const [team, setTeam] = useState(null);
+
+useEffect(() => {
+
+  const options = {
+    method: 'GET',
+    headers: {
+      'X-RapidAPI-Key': '1be2b2759emshb78e8166f2966bbp18caa5jsn412b63e85da2',
+      'X-RapidAPI-Host': 'api-football-v1.p.rapidapi.com'
+    }
+  };
+  fetch(
+    `https://api-football-v1.p.rapidapi.com/v3/teams?id=${id}`, options
+  )
+    .then((res) => {
+      return res.json();
+    })
+    .then((team) => {
+      //console.log(team)
+      setTeam(team);
+    });
+}, [id]);
 
   return (
     <>
-      {sample ? (
+      {team ? (
         <>
-          <Header teams={sample} />
+          <Header team={team} />
           <Grid container spacing={10} style={{ padding: "20px" }}>
             <Grid item xl={3}>
 
             </Grid>
             <Grid item xs={11}>
-              <TeamDetails teams={sample} />
+              <TeamDetails team={team} />
             </Grid>
           </Grid>
         </>

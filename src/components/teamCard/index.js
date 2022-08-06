@@ -24,8 +24,8 @@ const useStyles = makeStyles({
 
 export default function TeamCard(props) {
   const classes = useStyles();
-  console.log(props)
   const team = props.team;
+  console.log("Teamcard", props.team.team.id)
 
   return (
     <Card className={classes.card}>
@@ -58,7 +58,7 @@ export default function TeamCard(props) {
         <IconButton aria-label="add to favorites" onClick={null}>
           <FavoriteIcon color="primary" fontSize="large" />
         </IconButton>
-        <Link to={`/team/${team.id}`}>
+        <Link to={`/team/${props.team.team.id}`}>
           <Button variant="outlined" size="medium" color="primary">
             More Info ...
           </Button>

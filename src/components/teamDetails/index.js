@@ -39,7 +39,8 @@ const useStyles = makeStyles((theme) => ({
 
 const TeamDetails = (props) => {
   const classes = useStyles();
-  const teams = props.teams;
+  const teams = props.team.response[0];
+  console.log("TeamPage",props.team.response[0])
 
   return (
     <>
@@ -68,10 +69,10 @@ const TeamDetails = (props) => {
           </div>
         </Grid>
         <Grid item xs={9}>
-          <Typography variant="h6" component="p">
+          {/* <Typography variant="h6" component="p">
             {teams.league.season}
             <br></br>
-          </Typography>
+          </Typography> */}
           <Typography variant="h3" component="p">
             {teams.team.name}
             <br></br>
