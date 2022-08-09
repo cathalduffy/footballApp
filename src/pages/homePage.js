@@ -13,11 +13,12 @@ const useStyles = makeStyles({
 const HomePage = (props) => {
   const classes = useStyles();
   const [teams, setTeams] = useState([]);
+  const APIKEY = process.env.REACT_APP_API_KEY
 
   const options = {
     method: 'GET',
     headers: {
-      'X-RapidAPI-Key': '1be2b2759emshb78e8166f2966bbp18caa5jsn412b63e85da2',
+      'X-RapidAPI-Key': APIKEY,
       'X-RapidAPI-Host': 'api-football-v1.p.rapidapi.com'
     }
   };

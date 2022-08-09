@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Navigate, Routes } from "react-router-dom";
-import HomePage from './pages/homePage'
-import TeamDetailsPage from './pages/teamDetailsPage'
+import HomePage from './pages/homePage';
+import TeamDetailsPage from './pages/teamDetailsPage';
 
 const App = () => {
   return (
@@ -13,8 +13,6 @@ const App = () => {
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
-      //<HomePage sample={sample} />
-      //<TeamDetailsPage sample={sample} />
   );
 };
 

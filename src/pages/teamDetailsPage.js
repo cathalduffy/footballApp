@@ -18,17 +18,17 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const TeamDetailsPage = (props) => {
-//  const sample = props.sample;
 const classes = useStyles();
 const { id } = useParams();
 const [team, setTeam] = useState(null);
+const APIKEY = process.env.REACT_APP_API_KEY
 
 useEffect(() => {
 
   const options = {
     method: 'GET',
     headers: {
-      'X-RapidAPI-Key': '1be2b2759emshb78e8166f2966bbp18caa5jsn412b63e85da2',
+      'X-RapidAPI-Key': APIKEY,
       'X-RapidAPI-Host': 'api-football-v1.p.rapidapi.com'
     }
   };
@@ -39,7 +39,6 @@ useEffect(() => {
       return res.json();
     })
     .then((team) => {
-      //console.log(team)
       setTeam(team);
     });
 }, [id]);
