@@ -4,6 +4,7 @@ import TeamDetails from "../components/teamDetails/";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import { useParams } from "react-router-dom";
+import { getTeam } from "../api/football-api";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,26 +22,11 @@ const TeamDetailsPage = (props) => {
 const classes = useStyles();
 const { id } = useParams();
 const [team, setTeam] = useState(null);
-const APIKEY = process.env.REACT_APP_API_KEY
 
 useEffect(() => {
-
-  const options = {
-    method: 'GET',
-    headers: {
-      'X-RapidAPI-Key': APIKEY,
-      'X-RapidAPI-Host': 'api-football-v1.p.rapidapi.com'
-    }
-  };
-  fetch(
-    `https://api-football-v1.p.rapidapi.com/v3/teams?id=${id}`, options
-  )
-    .then((res) => {
-      return res.json();
-    })
-    .then((team) => {
-      setTeam(team);
-    });
+  getTeam(id).then((team) => {
+    setTeam(team);
+  });
 }, [id]);
 
   return (

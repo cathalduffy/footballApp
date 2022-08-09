@@ -3,6 +3,7 @@ import Header from "../components/headerTeamList";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import TeamList from "../components/teamList";
+import { getTeams } from "../api/football-api";
 
 const useStyles = makeStyles({
   root: {
@@ -13,21 +14,9 @@ const useStyles = makeStyles({
 const HomePage = (props) => {
   const classes = useStyles();
   const [teams, setTeams] = useState([]);
-  const APIKEY = process.env.REACT_APP_API_KEY
-
-  const options = {
-    method: 'GET',
-    headers: {
-      'X-RapidAPI-Key': APIKEY,
-      'X-RapidAPI-Host': 'api-football-v1.p.rapidapi.com'
-    }
-  };
 
   useEffect(() => {
-    fetch('https://api-football-v1.p.rapidapi.com/v3/standings/?season=2021&league=39', options)
-    .then((res) => res.json())
-    .then((json) => {
-      console.log(json.response[0].league.standings[0])
+   getTeams().then((json) => {
       setTeams(json.response[0].league.standings[0])
     })
   // eslint-disable-next-line react-hooks/exhaustive-deps
