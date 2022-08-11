@@ -3,18 +3,12 @@ import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Navigate, Routes, Link } from "react-router-dom";
 import HomePage from './pages/homePage';
 import TeamDetailsPage from './pages/teamDetailsPage';
+import SiteHeader from './components/siteHeader'
 
 const App = () => {
   return (
     <BrowserRouter>
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        {/* <li>
-          <Link to="/movies/favourites">Favourites</Link>
-        </li> */}
-      </ul>
+          <SiteHeader /> 
       <Routes>
         <Route path="/team/:id" element={<TeamDetailsPage/>} />
         <Route path="/" element={<HomePage />} />

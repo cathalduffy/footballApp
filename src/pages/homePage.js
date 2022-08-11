@@ -7,7 +7,7 @@ import { getTeams } from "../api/football-api";
 
 const useStyles = makeStyles({
   root: {
-    padding: "20px",
+    padding: "60px",
   },
 });
 
