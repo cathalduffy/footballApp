@@ -1,4 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth, logout } from "../../firebase";
+
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -7,7 +11,6 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
-import { useNavigate, NavLink } from "react-router-dom";
 import { useTheme } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 
@@ -19,29 +22,32 @@ const useStyles = makeStyles((theme) => ({
     // background: 'none',
   },
   inactiveLink: {
-    color: 'white',
-    padding : theme.spacing(1),
-    fontSize: '1.5rem'
+    color: "white",
+    padding: theme.spacing(1),
+    fontSize: "1.5rem",
   },
   activeLink: {
-    color: 'black',
-    padding : theme.spacing(1),
-    fontSize: '1.5rem',
-    background: "#bfbfbf"
-  }
+    color: "black",
+    padding: theme.spacing(1),
+    fontSize: "1.5rem",
+    background: "#bfbfbf",
+  },
 }));
 
-const SiteHeader = () => {
+function Navigation() {
   const classes = useStyles();
-  const navigate = useNavigate()
   const [anchorEl, setAnchorEl] = useState(null);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
-  const open = Boolean(anchorEl);
   const menuOptions = [
-    { label: "Home", path: "/" },
-    { label: "Favourites", path: "/teams/favourites" },
+    // { label: "Home", path: "/" },
+    // { label: "Favourites", path: "/teams/favourites" },
+    // { label: "Dashboard", path: "/dashboard" },
+    // { label: "Login", path: "/login" },
+
+    { label: "React Firebase Login", path: "/" },
+    { label: "Register", path: "/register" },
     { label: "Dashboard", path: "/dashboard" },
     { label: "Login", path: "/login" },
   ];
@@ -54,10 +60,16 @@ const SiteHeader = () => {
     setAnchorEl(event.currentTarget);
   };
 
-  return ( 
+  const [user] = useAuthState(auth);
+  const navigate = useNavigate();
+  return (
     <>
-      <AppBar className={classes.appbar}
-      position="fixed" elevation={0} color='primary'> 
+      <AppBar
+        className={classes.appbar}
+        position="fixed"
+        elevation={0}
+        color="primary"
+      >
         <Toolbar>
           <Typography variant="h4" className={classes.title}>
             The Football App
@@ -88,7 +100,7 @@ const SiteHeader = () => {
                   vertical: "top",
                   horizontal: "right",
                 }}
-                open={open}
+                // open={open}
                 onClose={() => setAnchorEl(null)}
               >
                 {menuOptions.map((opt) => (
@@ -103,25 +115,55 @@ const SiteHeader = () => {
             </>
           ) : (
             <>
-              {menuOptions.map((opt) => (
-                <NavLink
-                  key={opt.label}
-                  to={opt.path}
-                  className={({ isActive }) =>
-                  isActive ? classes.activeLink : classes.inactiveLink
-                }
-                  color="inherit"
-                  // onClick={() => handleMenuSelect(opt.path)}
-                >
-                  {opt.label}
-                </NavLink> 
-              ))}
+              <nav className="navbar bg-base-200 text-base-content">
+                <div className="navbar-middle">
+                  {!user ? (
+                    <NavLink
+                      to="/"
+                      className={({ isActive }) =>
+                        isActive
+                          ? "btn btn-ghost btn-active mr-2 hidden lg:flex"
+                          : "btn btn-ghost mr-2 hidden lg:flex"
+                      }
+                    >
+                      Home
+                    </NavLink>
+                  ) : (
+                    <NavLink
+                      to="/dashboard"
+                      className={({ isActive }) =>
+                        isActive
+                          ? "btn btn-ghost btn-active mr-2 hidden lg:flex"
+                          : "btn btn-ghost mr-2 hidden lg:flex"
+                      }
+                    >
+                      Dashboard
+                    </NavLink>
+                  )}
+                </div>
+                {!user ? (
+                  <div>
+                    <Link to="/login">
+                      <a>Login</a>
+                    </Link>
+                    <Link to="/register">
+                      <a>Register</a>
+                    </Link>
+                    </div>
+                ) : (
+                  <div className="navbar-end">
+                    <Link to="/logout">
+                      <a>Log Out</a>
+                    </Link>
+                  </div>
+                )}
+              </nav>
             </>
           )}
         </Toolbar>
       </AppBar>
     </>
   );
-};
+}
 
-export default SiteHeader;
+export default Navigation;

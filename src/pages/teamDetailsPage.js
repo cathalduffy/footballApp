@@ -5,6 +5,10 @@ import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import { useParams } from "react-router-dom";
 import { getTeam } from "../api/football-api";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { useNavigate } from "react-router-dom";
+import { auth } from "../firebase";
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,12 +26,19 @@ const TeamDetailsPage = (props) => {
 const classes = useStyles();
 const { id } = useParams();
 const [team, setTeam] = useState(null);
+const [user, loading, error] = useAuthState(auth);
+const navigate = useNavigate();
 
 useEffect(() => {
   getTeam(id).then((team) => {
     setTeam(team);
   });
 }, [id]);
+
+useEffect(() => {
+  if (loading) return;
+  if (!user) return navigate("/");
+}, [user, loading]);
 
   return (
     <>
