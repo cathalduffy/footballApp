@@ -1,6 +1,6 @@
 import React, {useState, useEffect}  from "react";
-import Header from "../components/headerTeamList/";
-import TeamDetails from "../components/teamDetails/";
+import Header from "../components/headerTeamList";
+import TeamDetails from "../components/teamDetails";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import { useParams } from "react-router-dom";

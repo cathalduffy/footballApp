@@ -2,7 +2,6 @@ import React, { useState, useContext } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, logout } from "../../firebase";
-
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -40,16 +39,13 @@ function Navigation() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
+  const open = Boolean(anchorEl);
   const menuOptions = [
-    // { label: "Home", path: "/" },
-    // { label: "Favourites", path: "/teams/favourites" },
-    // { label: "Dashboard", path: "/dashboard" },
-    // { label: "Login", path: "/login" },
-
-    { label: "React Firebase Login", path: "/" },
-    { label: "Register", path: "/register" },
-    { label: "Dashboard", path: "/dashboard" },
-    { label: "Login", path: "/login" },
+    { label: "Home", path: "/", protected: false },
+    { label: "Login", path: "/login", protected: false },
+    { label: "Register", path: "/register", protected: false },
+    { label: "Dashboard", path: "/dashboard", protected: true },
+    { label: "Logout", path: "/logout", protected: true },
   ];
 
   const handleMenuSelect = (pageURL) => {
@@ -100,64 +96,40 @@ function Navigation() {
                   vertical: "top",
                   horizontal: "right",
                 }}
-                // open={open}
+                open={open}
                 onClose={() => setAnchorEl(null)}
               >
-                {menuOptions.map((opt) => (
-                  <MenuItem
-                    key={opt.label}
-                    onClick={() => handleMenuSelect(opt.path)}
-                  >
-                    {opt.label}
-                  </MenuItem>
-                ))}
+                {menuOptions.map((opt) => {
+                  if (opt.protected && !user) return;
+                  return (
+                    <MenuItem
+                      key={opt.label}
+                      onClick={() => handleMenuSelect(opt.path)}
+                    >
+                      {opt.label}
+                    </MenuItem>
+                  );
+                })}
               </Menu>
             </>
           ) : (
             <>
-              <nav className="navbar bg-base-200 text-base-content">
-                <div className="navbar-middle">
-                  {!user ? (
-                    <NavLink
-                      to="/"
-                      className={({ isActive }) =>
-                        isActive
-                          ? "btn btn-ghost btn-active mr-2 hidden lg:flex"
-                          : "btn btn-ghost mr-2 hidden lg:flex"
-                      }
-                    >
-                      Home
-                    </NavLink>
-                  ) : (
-                    <NavLink
-                      to="/dashboard"
-                      className={({ isActive }) =>
-                        isActive
-                          ? "btn btn-ghost btn-active mr-2 hidden lg:flex"
-                          : "btn btn-ghost mr-2 hidden lg:flex"
-                      }
-                    >
-                      Dashboard
-                    </NavLink>
-                  )}
-                </div>
-                {!user ? (
-                  <div>
-                    <Link to="/login">
-                      <a>Login</a>
-                    </Link>
-                    <Link to="/register">
-                      <a>Register</a>
-                    </Link>
-                    </div>
-                ) : (
-                  <div className="navbar-end">
-                    <Link to="/logout">
-                      <a>Log Out</a>
-                    </Link>
-                  </div>
-                )}
-              </nav>
+              {menuOptions.map((opt) => {
+                if (opt.protected && !user) return;
+                return (
+                  <NavLink
+                    key={opt.label}
+                    to={opt.path}
+                    className={({ isActive }) =>
+                      isActive ? classes.activeLink : classes.inactiveLink
+                    }
+                    color="inherit"
+                    onClick={() => handleMenuSelect(opt.path)}
+                  >
+                    {opt.label}
+                  </NavLink>
+                );
+              })}
             </>
           )}
         </Toolbar>

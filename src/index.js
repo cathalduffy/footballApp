@@ -8,7 +8,7 @@ import Logout from "./pages/Logout";
 import Register from "./pages/Register";
 import Reset from "./pages/Reset";
 import Dashboard from "./pages/Dashboard";
-import TeamDetailsPage from './pages/teamDetailsPage';
+import TeamDetailsPage from './pages/TeamDetailsPage';
 import SiteHeader from './components/siteHeader';
 
 import Navigation from "./components/nav/navigation";
@@ -17,7 +17,6 @@ import Navigation from "./components/nav/navigation";
 const App = () => {
   return (
     <BrowserRouter>
-          {/* <SiteHeader />  */}
           <Navigation />
       <Routes>
         <Route path="/team/:id" element={<TeamDetailsPage/>} />
@@ -35,4 +34,3 @@ const App = () => {
 };
 
 ReactDOM.render(<App />, document.getElementById("root"));
-// export default App;
