@@ -8,9 +8,9 @@ const options = {
     }
   };
 
-export const getTeams = () => {
+export const getTeams = year => {
     return fetch(
-      'https://api-football-v1.p.rapidapi.com/v3/standings/?season=2021&league=39', options)
+      `https://api-football-v1.p.rapidapi.com/v3/standings/?season=${year}&league=39`, options)
       .then(res => res.json())
   };
 

@@ -69,10 +69,6 @@ const TeamDetails = (props) => {
           </div>
         </Grid>
         <Grid item xs={9}>
-          {/* <Typography variant="h6" component="p">
-            {teams.league.season}
-            <br></br>
-          </Typography> */}
           <Typography variant="h3" component="p">
             {teams.team.name}
             <br></br>
