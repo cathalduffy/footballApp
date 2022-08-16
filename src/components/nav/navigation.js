@@ -99,24 +99,23 @@ function Navigation() {
                 open={open}
                 onClose={() => setAnchorEl(null)}
               >
-                {menuOptions.map((opt) => {
-                  if (opt.protected && !user) return;
-                  return (
+                {menuOptions
+                  .filter((opt) => (user ? opt.protected : !opt.protected))
+                  .map((opt) => (
                     <MenuItem
                       key={opt.label}
                       onClick={() => handleMenuSelect(opt.path)}
                     >
                       {opt.label}
                     </MenuItem>
-                  );
-                })}
+                  ))}
               </Menu>
             </>
           ) : (
             <>
-              {menuOptions.map((opt) => {
-                if (opt.protected && !user) return;
-                return (
+              {menuOptions
+                .filter((opt) => (user ? opt.protected : !opt.protected))
+                .map((opt) => (
                   <NavLink
                     key={opt.label}
                     to={opt.path}
@@ -128,8 +127,7 @@ function Navigation() {
                   >
                     {opt.label}
                   </NavLink>
-                );
-              })}
+                ))}
             </>
           )}
         </Toolbar>
