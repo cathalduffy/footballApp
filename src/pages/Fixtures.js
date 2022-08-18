@@ -8,6 +8,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import TeamList from "../components/teamList";
 import { getTeams } from "../api/football-api";
 import Menu from "../components/dropdownMenu";
+import App from "../components/calendar";
+
 
 const useStyles = makeStyles({
   root: {
@@ -15,11 +17,19 @@ const useStyles = makeStyles({
   },
 });
 
-function Dashboard() {
+function Fixtures() {
   const [user, loading, error] = useAuthState(auth);
   const navigate = useNavigate();
   const classes = useStyles();
   const [teams, setTeams] = useState([]);
+  const [date, setDate] = useState(2022); //need this to set year in api endpoint
+
+  // const pull_data = (data) => { //need this to set year in api endpoint
+  //   setDate(data);
+  // };
+
+  // console.log(date);
+
   const [year, setYear] = useState(2022);
 
   const pull_data = (data) => {
@@ -27,6 +37,7 @@ function Dashboard() {
   };
 
   console.log(year);
+
 
   useEffect(() => {
     if (loading) return;
@@ -43,7 +54,8 @@ function Dashboard() {
   return (
     <Grid container className={classes.root}>
       <Grid item xs={12}>
-        <Header title={"Teams Dashboard"} />
+        <Header title={"Fixtures"} />
+        <App></App>
         <Menu func={pull_data}></Menu>
       </Grid>
       <Grid item container spacing={5}>
@@ -53,4 +65,4 @@ function Dashboard() {
   );
 }
 
-export default Dashboard;
+export default Fixtures;

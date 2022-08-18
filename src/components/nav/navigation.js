@@ -45,6 +45,7 @@ function Navigation() {
     { label: "Login", path: "/login", protected: false },
     { label: "Register", path: "/register", protected: false },
     { label: "Dashboard", path: "/dashboard", protected: true },
+    { label: "Fixtures", path: "/fixtures", protected: true },
     { label: "Logout", path: "/logout", protected: true },
   ];
 

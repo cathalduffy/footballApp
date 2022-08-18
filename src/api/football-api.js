@@ -20,3 +20,11 @@ export const getTeam = id => {
   ).then(res => res.json());
 };
 
+export const getFixtureByDate = date => {
+  return fetch(
+    `https://api-football-v1.p.rapidapi.com/v3/fixtures?date=${date}`, options
+  ).then(res => res.json());
+};
+
+
+
