@@ -7,18 +7,31 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 
-export default function FixturesTable(props) {
-  console.log(props.teams.response);
-  const homeTeam = props.teams.response[0].teams.home.name;
-  const awayTeam = props.teams.response[0].teams.away.name;
-  const goalsHome = props.teams.response[0].score.fulltime.home;
-  const goalsAway = props.teams.response[0].score.fulltime.away;
+// export default function FixturesTable({fixtures}) {
+// console.log(props.teams.response);
+// const homeTeam = props.teams.response[0].teams.home.name;
+// const awayTeam = props.teams.response[0].teams.away.name;
+// const goalsHome = props.teams.response[0].score.fulltime.home;
+// const goalsAway = props.teams.response[0].score.fulltime.away;
+// const response = props.teams.response;
 
-  const response = props.teams.response;
-
+const FixturesTable = ({ fixtures }) => {
+  const fixturesTable = fixtures.map((fixture) => (
+    <TableBody>
+      <TableRow key={fixture.teams.name}>
+        <TableCell>{fixture.teams.home.name}</TableCell>
+        <TableCell>
+          {fixture.score.fulltime.home} - {fixture.score.fulltime.away}
+        </TableCell>
+        <TableCell>{fixture.teams.away.name}</TableCell>
+      </TableRow>
+    </TableBody>
+  ));
+  console.log("Props ", fixtures);
   return (
+    <>
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 350 }} size="large">
+        <Table size="medium">
           <TableHead>
             <TableRow>
               <TableCell>
@@ -32,20 +45,11 @@ export default function FixturesTable(props) {
               </TableCell>
             </TableRow>
           </TableHead>
-          <TableBody>
-              {response.map((opt) => (
-                <TableRow key={opt.teams}>
-                  <TableCell>
-                  {opt.teams.home.name}
-                  </TableCell>
-              <TableCell>
-                {opt.score.fulltime.home} - {opt.score.fulltime.away}
-              </TableCell>
-              <TableCell>{opt.teams.away.name}</TableCell>
-              </TableRow>
-              ))}
-          </TableBody>
+          {fixturesTable}
         </Table>
       </TableContainer>
+    </>
   );
-}
+};
+
+export default FixturesTable;

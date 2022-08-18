@@ -8,14 +8,13 @@ const TeamList = ({teams}) => {
       <Team key={team.id} team={team} />
     </Grid>
     )
+
+    console.log("This is a test",teams)
   return(
       <>
       {teamList}
       </>
   )
-
-  // console.log(teamCards);
-  // return teamCards;
 };
 
 export default TeamList;

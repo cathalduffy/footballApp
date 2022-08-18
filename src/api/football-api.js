@@ -20,9 +20,9 @@ export const getTeam = id => {
   ).then(res => res.json());
 };
 
-export const getFixtureByDate = date => {
+export const getFixturesByDate = () => {
   return fetch(
-    `https://api-football-v1.p.rapidapi.com/v3/fixtures?date=${date}`, options
+    'https://api-football-v1.p.rapidapi.com/v3/fixtures?date=2021-12-28&league=39&season=2021', options
   ).then(res => res.json());
 };
 
