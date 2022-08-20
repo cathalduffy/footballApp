@@ -19,13 +19,11 @@ const DropdownLeague = (props) => {
   return (
     <div>
       <Dropdown
-        label="Please select a league"
+        label="Please select a league "
         options={options}
         value={value}
         onChange={handleChange}
       />
-
-      <h2>{value}</h2>
     </div>
   );
 };

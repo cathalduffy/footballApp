@@ -8,6 +8,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { getFixturesByDate } from "../api/football-api";
 import App from "../components/calendar";
 import FixturesTable from "../components/fixturesTable";
+import DropdownLeague from "../components/dropdownMenuLeague";
 
 const useStyles = makeStyles({
   root: {
@@ -21,9 +22,14 @@ function Fixtures() {
   const classes = useStyles();
   const [fixtures, setFixtures] = useState([]);
   const [date, setDate] = useState(); //need this to set year in api endpoint
+  const [leagueID, setLeagueID] = useState();
 
   const pull_data = (date) => {
     setDate(date);
+  };
+
+  const get_data = (data) => {
+    setLeagueID(data);
   };
 
   useEffect(() => {
@@ -32,10 +38,10 @@ function Fixtures() {
   }, [user, loading]);
 
   useEffect(() => {
-    getFixturesByDate(date).then((json) => {
+    getFixturesByDate(date,leagueID).then((json) => {
       setFixtures(json.response);
     });
-  }, [date]);
+  }, [date,leagueID]);
 
   return (
     <Grid container className={classes.root}>
@@ -43,6 +49,7 @@ function Fixtures() {
         <Header title={"Fixtures"} />
         <App func={pull_data}></App>
         <br></br>
+        <DropdownLeague func={get_data}></DropdownLeague>
         <br></br>
       </Grid>
       <Grid item xs={7} container spacing={1}>

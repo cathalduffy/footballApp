@@ -49,9 +49,9 @@ function Fixtures() {
     <Grid container className={classes.root}>
       <Grid item xs={12}>
         <Header title={"Standings"} />
-        <Menu func={pull_data}></Menu>
         <DropdownLeague func={get_data}></DropdownLeague>
-
+        <br></br>
+        <Menu func={pull_data}></Menu>
         <br></br>
       </Grid>
       <Grid item xs={7} container spacing={1}>

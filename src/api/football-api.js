@@ -8,9 +8,9 @@ const options = {
   },
 };
 
-export const getTeams = (year) => {
+export const getTeams = (year, leagueID) => {
   return fetch(
-    `https://api-football-v1.p.rapidapi.com/v3/standings/?season=${year}&league=39`,
+    `https://api-football-v1.p.rapidapi.com/v3/standings/?season=${year}&league=${leagueID}`,
     options
   ).then((res) => res.json());
 };
@@ -22,9 +22,9 @@ export const getTeam = (id) => {
   ).then((res) => res.json());
 };
 
-export const getFixturesByDate = (date) => {
+export const getFixturesByDate = (date, leagueID) => {
   return fetch(
-    `https://api-football-v1.p.rapidapi.com/v3/fixtures?date=${date}&league=39&season=2022`,
+    `https://api-football-v1.p.rapidapi.com/v3/fixtures?date=${date}&league=${leagueID}&season=2022`,
     options
   ).then((res) => res.json());
 };
