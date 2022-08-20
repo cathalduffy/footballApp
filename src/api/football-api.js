@@ -29,9 +29,9 @@ export const getFixturesByDate = (date) => {
   ).then((res) => res.json());
 };
 
-export const getStandingsByLeague = (year) => {
+export const getStandingsByLeague = (year,leagueID) => {
   return fetch(
-    `https://api-football-v1.p.rapidapi.com/v3/standings?season=${year}&league=39`,
+    `https://api-football-v1.p.rapidapi.com/v3/standings?season=${year}&league=${leagueID}`,
     options
   ).then((res) => res.json());
 };
