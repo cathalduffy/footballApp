@@ -26,8 +26,6 @@ function Dashboard() {
     setYear(data);
   };
 
-  console.log(year);
-
   useEffect(() => {
     if (loading) return;
     if (!user) return navigate("/");

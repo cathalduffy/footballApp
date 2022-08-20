@@ -27,7 +27,6 @@ const FixturesTable = ({ fixtures }) => {
       </TableRow>
     </TableBody>
   ));
-  console.log("Props ", fixtures);
   return (
     <>
       <TableContainer component={Paper}>

@@ -20,7 +20,11 @@ function Fixtures() {
   const navigate = useNavigate();
   const classes = useStyles();
   const [fixtures, setFixtures] = useState([]);
-  const [date, setDate] = useState(2022); //need this to set year in api endpoint
+  const [date, setDate] = useState(); //need this to set year in api endpoint
+
+  const pull_data = (date) => {
+    setDate(date);
+  };
 
   useEffect(() => {
     if (loading) return;
@@ -28,20 +32,20 @@ function Fixtures() {
   }, [user, loading]);
 
   useEffect(() => {
-    getFixturesByDate().then((json) => {
+    getFixturesByDate(date).then((json) => {
       setFixtures(json.response);
     });
-  }, []);
+  }, [date]);
 
   return (
     <Grid container className={classes.root}>
       <Grid item xs={12}>
         <Header title={"Fixtures"} />
-        <App></App>
+        <App func={pull_data}></App>
         <br></br>
         <br></br>
       </Grid>
-      <Grid item container spacing={5}>
+      <Grid item xs={7} container spacing={1}>
         <FixturesTable fixtures={fixtures}></FixturesTable>
       </Grid>
     </Grid>
