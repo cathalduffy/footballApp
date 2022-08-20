@@ -10,6 +10,8 @@ import Reset from "./pages/Reset";
 import Dashboard from "./pages/Dashboard";
 import TeamDetailsPage from './pages/TeamDetailsPage';
 import Navigation from "./components/nav/navigation";
+import Standings from './pages/Standings';
+
 
 
 const App = () => {
@@ -26,6 +28,8 @@ const App = () => {
         <Route path="/reset" element={<Reset />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/fixtures" element={<Fixtures />} />
+        <Route path="/standings" element={<Standings />} />
+
       </Routes>
     </BrowserRouter>
   );
