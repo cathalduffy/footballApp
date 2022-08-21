@@ -6,14 +6,17 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
+import { Link } from "react-router-dom";
 
 const StandingsTable = ({ standings }) => {
-console.log("Standings table...",standings)
+  console.log("Standings table...", standings);
   const standingsTable = standings.map((standing) => (
     <TableBody>
       <TableRow key={standing.team.name}>
-      <TableCell>{standing.rank}</TableCell>
-        <TableCell>{standing.team.name}</TableCell>
+        <TableCell>{standing.rank}</TableCell>
+        <Link to={`/team/${standing.team.id}`}>
+          <TableCell>{standing.team.name}</TableCell>
+        </Link>
         <TableCell>{standing.all.played}</TableCell>
         <TableCell>{standing.all.goals.for}</TableCell>
         <TableCell>{standing.all.goals.against}</TableCell>
@@ -29,7 +32,7 @@ console.log("Standings table...",standings)
         <Table size="medium">
           <TableHead>
             <TableRow>
-            <TableCell>
+              <TableCell>
                 <b>Rank</b>
               </TableCell>
               <TableCell>
