@@ -40,25 +40,45 @@ e.g.
 
 ![][dashboard]
 
+
+
 >Shows detailed information on a specific team. Calls the team by id endpoint.
 
 ![][teamView]
+
+
 
 >Displays fixtures by calling the fixtures by id and year endpoint. Can be filtered by selecting the league and date, with a dropdown menu and a calendar.
 
 ![][fixtures]
 
+
+
 >Displays standings by calling the standings by league id and year endpoint. Can be filtered by selecting the league and year, with dropdown menus.
 
-![][fixtures]
+![][standings]
 
+
+
+>Login page that communicates with firebase to allow user to log in.
+
+![][login]
+
+
+
+>Registration page that communicates with firebase to allow a user to register an account.
+
+![][register]
+
+
+
+>Simple form that allows user to communicate with firebase to reset their account password.
+
+![][reset]
 
 ### Component catalogue.
 
-[ Use the Storybook UI to highlight the new components for which you developed stories.]
-e.g.
-
-![][stories]
+Unfortunately, my Storbook components no longer render correctly due to the fact that after I applied the real data, storybook no longer worked for these components. However, Storybook was used in the building of most of the application's components.
 
 ## Caching.
 
@@ -89,7 +109,7 @@ Dropdown menus that allow the user to select the year and also the league. Calen
 
 ## Independent learning (if relevant),
 
-[Briefly explain any aspects of your assignment work that required independent learning (i.e. not addressed in the lectures or labs) on your behalf., e.g. 3rd-party components, libraries, tools. Include source code references.]
+Implementing the use of a calendar component (https://codesandbox.io/s/n5kb8). The use of a function in the component that would allow props to be passed back to the page, and then on the api calls (sent from the dropdown menus). The use of outside API endpoints, from the football-api(https://rapidapi.com/api-sports/api/api-football/).
 
 [dashboard]: ./public/assets/dashboard.png
 [fixtures]: ./public/assets/fixtures.png
